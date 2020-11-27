@@ -53,6 +53,7 @@
 
     <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
     <script src="hamburger.js"></script>
+    <script src="stickyfill.min.js"></script>
     <script>
         // CDN Smooth Scroll
         // Smooth Scroll works in all modern browsers, and IE 9 and above.
@@ -72,6 +73,10 @@
             nav: '.hamburger__nav',
             target: '.hamburger__bg',
         });
+
+        // polyfill css -> position: sticky 
+        var elem = document.querySelectorAll('header');
+        Stickyfill.add(elem);
     </script>
 
 </body>
