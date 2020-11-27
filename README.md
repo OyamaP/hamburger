@@ -34,3 +34,6 @@ Compatible with IE11 and modern browsers
 @ link https://github.com/cferdinandi/smooth-scroll
 2.stickyfill<br>
 @ link https://github.com/wilddeer/stickyfill
+
+## Use PolyFill for IE11
+- forEach
