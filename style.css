@@ -42,6 +42,7 @@ header {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    position: relative;
     height: 100px;
     padding: 30px;
 }
@@ -172,7 +173,9 @@ section h2 {
     .hamburger__icon {
         display: inline-block;
         position: absolute;
+        top: 50%;
         right: 10px;
+        transform: translateY(-50%);
         width: 35px;
         height: 35px;
     }
