@@ -29,5 +29,8 @@ Load JavaScript as shown below
 ## Browser
 Compatible with IE11 and modern browsers
 
-## Use CDN Smooth Scroll
+## Use CDN
+1.Smooth Scroll<>br
 @ link https://github.com/cferdinandi/smooth-scroll
+2.stickyfill<br>
+@ link https://github.com/wilddeer/stickyfill
