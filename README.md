@@ -28,3 +28,6 @@ Load JavaScript as shown below
 
 ## Browser
 Compatible with IE11 and modern browsers
+
+## Use CDN Smooth Scroll
+@ link https://github.com/cferdinandi/smooth-scroll
