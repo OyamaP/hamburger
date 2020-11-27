@@ -1,3 +1,17 @@
+/**
+ * polyfill / forEach
+ * @link https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach
+ */
+if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = function (callback, thisArg) {
+        thisArg = thisArg || window;
+        for (var i = 0; i < this.length; i++) {
+            callback.call(thisArg, this[i], i, this);
+        }
+    };
+}
+
+
 // ハンバーガーメニュー設定
 function SetHamburger(argObj){
 
@@ -33,15 +47,15 @@ function SetHamburger(argObj){
     * function
     ******************************/
     const toggleOpen = function(){
-        for(let $ele of $openEle){
-            $ele.classList.toggle(config.openClass);
-        }        
+        $openEle.forEach(function(i){
+            i.classList.toggle(config.openClass);
+        });
     };
 
     const setEvent = function(){
-        for(let $ele of $toggleEle){
-            $ele.addEventListener('click',toggleOpen,false);
-        }
+        $toggleEle.forEach(function(i){
+            i.addEventListener('click',toggleOpen,false);
+        });
     };
 
     /******************************
