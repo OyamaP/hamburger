@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <title>Hamburger</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="inner">
+            <div class="logo"><a href="./index.html">Logo</a></div>
+            <div class="hamburger__item hamburger__icon">
+                <i></i>
+                <i></i>
+                <i></i>
+            </div>
+            <div class="hamburger__item hamburger__bg"></div>
+            <nav class="nav hamburger__nav">
+                <ul class="links">
+                    <li><a href="#1"><span>Section1</span></a></li>
+                    <li><a href="#2"><span>Section2</span></a></li>
+                    <li><a href="#3"><span>Section3</span></a></li>
+                    <li><a href="#4"><span>Section4</span></a></li>
+                    <li><a href="#5"><span>Section5</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section1">
+            <h2 id="1">Section1</h2>
+        </section>
+        <section class="section2">
+            <h2 id="2">Section2</h2>
+        </section>
+        <section class="section3">
+            <h2 id="3">Section3</h2>
+        </section>
+        <section class="section4">
+            <h2 id="4">Section4</h2>
+        </section>
+        <section class="section5">
+            <h2 id="5">Section5</h2>
+        </section>
+
+
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="hamburger.js"></script>
+    <script>
+        // CDN Smooth Scroll
+        // Smooth Scroll works in all modern browsers, and IE 9 and above.
+        const scroll = new SmoothScroll('a[href*="#"]', {
+            speed: 500, // move speed
+            updateURL: false, // fale = no #link
+            offset: function(){ // scroll buffer(px)
+                // nav の高さを取得しレスポンシブ対応
+                const nav = document.querySelector('header .inner');
+                return nav.offsetHeight;
+            },
+        });
+
+        // HamburgerMenu
+        const hamburger = new SetHamburger({
+            icon: '.hamburger__icon',
+            nav: '.hamburger__nav',
+            target: '.hamburger__bg',
+        });
+    </script>
+
+</body>
+
+</html>
