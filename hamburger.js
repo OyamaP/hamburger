@@ -24,6 +24,7 @@ function SetHamburger(argObj){
         nav: '', // 開閉するメニュー
         target: '', // icon以外に任意で設定する開閉ボタン
         openClass: 'open', // メニュー開閉時に設定するclass
+        width: '', // メニューを利用するmediaquery 横幅
     };
     // config -> 引数上書き
     for(let key in argObj){
@@ -47,6 +48,8 @@ function SetHamburger(argObj){
     * function
     ******************************/
     const toggleOpen = function(){
+        // window viewport と 指定したwidthを比較
+        if(config.width && config.width<=window.innerWidth) return;
         $openEle.forEach(function(i){
             i.classList.toggle(config.openClass);
         });
