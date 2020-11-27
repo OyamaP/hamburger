@@ -29,7 +29,7 @@ Load JavaScript as shown below
 ## Browser
 Compatible with IE11 and modern browsers
 
-## Use CDN
+## Use External tools　by GitHub
 1.Smooth Scroll<>br
 @ link https://github.com/cferdinandi/smooth-scroll
 2.stickyfill<br>
