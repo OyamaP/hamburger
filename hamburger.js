@@ -18,52 +18,66 @@ function SetHamburger(argObj){
     /******************************
     * define
     ******************************/
-   // constructor
-   const config = {
+    const config = {
         icon: '', // ハンバーガーアイコン
         nav: '', // 開閉するメニュー
         target: '', // icon以外に任意で設定する開閉ボタン
         openClass: 'open', // メニュー開閉時に設定するclass
         width: '', // メニューを利用するmediaquery 横幅
     };
-    // config -> 引数上書き
-    for(let key in argObj){
-        if(!config.hasOwnProperty(key)) continue;
-        config[key] = argObj[key];
-    }
-    const $icon = document.querySelector(config.icon);
-    const $nav = document.querySelector(config.nav);
-    // 最低限 icon,nav 要素を取得が必要
-    if(!$icon || !$nav) return;
-    const $targets = [].slice.call(document.querySelectorAll(config.target));
-    // nav a -> nav配下のa要素を全取得
-    const $links = [].slice.call(document.querySelectorAll(config.nav + ' a'));
-    // openClass を付与する要素を設定
-    const $openEle = $targets.concat([$icon,$nav]);
-    // toggleOpen を設定する要素を設定
-    const $toggleEle = $links.concat($targets,[$icon]);
-
+    const $dom = {};
+    const Proto = SetHamburger.prototype;
 
     /******************************
     * function
     ******************************/
-    const toggleOpen = function(){
-        // window viewport と 指定したwidthを比較
+
+    // constructor
+    //function constructor(){
+    Proto.constructor = function(){
+        // config -> 引数上書き
+        for(let key in argObj){
+            if(!config.hasOwnProperty(key)) continue;
+            config[key] = argObj[key];
+        }
+        getDOM();
+        this.setEvent();
+    }
+
+    // DOM 定義
+    const getDOM = function(){
+        $dom.icon = document.querySelector(config.icon);
+        $dom.nav = document.querySelector(config.nav);
+        // 最低限 icon,nav 要素を取得が必要
+        if(!$dom.icon || !$dom.nav) return;
+        $dom.targets = [].slice.call(document.querySelectorAll(config.target));
+        // nav a -> nav子要素を全取得(1階層のみ)
+        $dom.links = [].slice.call(document.querySelectorAll(config.nav + ' *'));
+        // openClass を付与する要素を設定
+        $dom.openEle = $dom.targets.concat([$dom.icon,$dom.nav]);
+        // toggleOpen を設定する要素を設定
+        $dom.toggleEle = $dom.links.concat($dom.targets,[$dom.icon]);
+    }
+
+    Proto.setEvent = function(){
+        const fn = this.toggleMenu; // eventのthisは該当要素になるため予め関数を格納
+        $dom.toggleEle.forEach(function(i){
+            i.addEventListener('click',fn,false);
+        });
+    }
+
+    // new したobjectでも呼出可能
+    Proto.toggleMenu = function(){
+        // window viewport と 指定widthを比較
+        // =>通常時のメニューとハンバーガーメニューで同じ要素を利用している場合を想定
         if(config.width && config.width<=window.innerWidth) return;
-        $openEle.forEach(function(i){
+        $dom.openEle.forEach(function(i){
             i.classList.toggle(config.openClass);
         });
-    };
-
-    const setEvent = function(){
-        $toggleEle.forEach(function(i){
-            i.addEventListener('click',toggleOpen,false);
-        });
-    };
+    }
 
     /******************************
     * run
     ******************************/
-    setEvent();
-
+    this.constructor();
 }
